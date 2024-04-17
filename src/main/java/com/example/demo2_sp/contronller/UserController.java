@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -26,7 +25,6 @@ public class UserController {
         User user=userService.login(userVerificationLogin.getPhone());
         if (user != null) {
             // 登录成功，将用户对象转换为 JSON 并返回
-
             return getResponseEntity(user);
         }else {
             // 登录失败，返回一个属性都为空的用户对象的 JSON
@@ -40,10 +38,8 @@ public class UserController {
         String user_password = login.getUser_password();
         // 调用 UserService 中的方法验证密码是否正确
         User user = userService.isPasswordCorrect(phone, user_password);
-
         if (user != null) {
             // 登录成功，将用户对象转换为 JSON 并返回
-
             return getResponseEntity(user);
         }else {
             // 登录失败，返回一个属性都为空的用户对象的 JSON
@@ -58,7 +54,6 @@ public class UserController {
             // 用 UserService 中的方法将用户数据插入数据库
             User reg = userService.registerUser(user_register);
             if (reg != null) {
-
                 return getResponseEntity(reg);
             } else {
                 // 如果注册失败，返回适当的错误响应
@@ -124,7 +119,6 @@ public class UserController {
     public ResponseEntity<?> logout(@RequestBody int UID) {
         // 调用 UserService 中的方法来尝试注销用户
         boolean logoutSuccessful = userService.logout(UID);
-
         if (logoutSuccessful) {
             // 如果注销成功，返回成功的响应
             return ResponseEntity.ok("用户注销成功");

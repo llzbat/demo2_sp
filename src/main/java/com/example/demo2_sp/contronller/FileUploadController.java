@@ -79,7 +79,6 @@ public class FileUploadController {
             RestTemplate restTemplate = new RestTemplate();
             // 将 MultipartFile 转换为字节数组
             byte[] fileBytes = file.getBytes();
-
             // 创建一个包含文件字节数组的 ByteArrayResource
             ByteArrayResource fileResource = new ByteArrayResource(fileBytes) {
                 @Override
